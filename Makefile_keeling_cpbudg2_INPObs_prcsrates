@@ -137,7 +137,7 @@ SRC   = constants.F \
 	maxmin.F \
 	misclibs.F \
 	morrison.F \
-	module_mp_nssl_2mom_cpbudg2_INPObs_prcsrates.F \
+	module_mp_nssl_2mom_cpbudg2_NewIF_prcsrates.F \
 	param.F \
 	parcel.F \
 	pdef.F \
@@ -214,7 +214,7 @@ comm.o: input.o bc.o
 diff2.o: constants.o input.o
 goddard.o: constants.o input.o cm1libs.o
 hifrq.o: input.o constants.o cm1libs.o
-init3d.o:  constants.o input.o misclibs.o cm1libs.o bc.o comm.o module_mp_nssl_2mom_cpbudg2_INPObs_prcsrates.o poiss.o parcel.o
+init3d.o:  constants.o input.o misclibs.o cm1libs.o bc.o comm.o module_mp_nssl_2mom_cpbudg2_NewIF_prcsrates.o poiss.o parcel.o
 init_physics.o: constants.o input.o sfclay.o sfclayrev.o slab.o radtrns3d.o irrad3d.o goddard.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o
 init_surface.o: constants.o input.o oml.o
 init_terrain.o: constants.o input.o bc.o comm.o adv_routines.o
@@ -228,7 +228,7 @@ module_mp_radar.o: module_ra_etc.o
 module_ra_rrtmg_lw.o: module_ra_etc.o
 module_ra_rrtmg_sw.o: module_ra_etc.o module_ra_rrtmg_lw.o
 morrison.o: input.o constants.o
-param.o: constants.o input.o init_terrain.o bc.o comm.o thompson.o morrison.o module_mp_nssl_2mom_cpbudg2_INPObs_prcsrates.o goddard.o lfoice.o
+param.o: constants.o input.o init_terrain.o bc.o comm.o thompson.o morrison.o module_mp_nssl_2mom_cpbudg2_NewIF_prcsrates.o goddard.o lfoice.o
 parcel.o: constants.o input.o cm1libs.o bc.o comm.o writeout_nc_cpbudg2_prcsrates.o
 pdef.o: input.o bc.o comm.o
 pdcomp.o: constants.o input.o adv.o poiss.o
@@ -237,7 +237,7 @@ radiation_driver.o: constants.o input.o bc.o radtrns3d.o module_ra_etc.o module_
 radtrns3d.o: irrad3d.o sorad3d.o radlib3d.o
 restart.o: constants.o input.o writeout_nc_cpbudg2_prcsrates.o
 sfcphys.o: constants.o input.o cm1libs.o
-solve_cpbudg2_prcsrates.o: constants.o input.o bc.o comm.o adv.o adv_routines.o diff2.o turb.o sound.o sounde.o soundns.o soundcb.o anelp.o misclibs.o kessler.o thompson.o morrison.o module_mp_nssl_2mom_cpbudg2_INPObs_prcsrates.o goddard.o lfoice.o testcase_simple_phys.o parcel.o pdcomp.o
+solve_cpbudg2_prcsrates.o: constants.o input.o bc.o comm.o adv.o adv_routines.o diff2.o turb.o sound.o sounde.o soundns.o soundcb.o anelp.o misclibs.o kessler.o thompson.o morrison.o module_mp_nssl_2mom_cpbudg2_NewIF_prcsrates.o goddard.o lfoice.o testcase_simple_phys.o parcel.o pdcomp.o
 sorad3d.o: radlib3d.o
 sound.o: constants.o input.o misclibs.o bc.o comm.o
 sounde.o: constants.o input.o misclibs.o bc.o comm.o
