@@ -1,32 +1,44 @@
+# cm1v19.6-newif
+
 ## Overview
+This repository provides a small set of CM1 v19.6 source-file modifications used in experiments involving an IF-INP (“NewIF”) immersion-freezing routine and Carpenter-style convective forcing. All other CM1 source files are assumed to be identical to the official CM1 v19.6 distribution.
 
-This repository contains the codes used to compile CM1v19.6 with specific modifications made for the experiments presented in Ross and Lasher-Trapp (in submission).
-All other CM1 source files remain unmodified from the original release.
-Modified Files
+The intent is:
+- **`src/`**: general implementation (code changes)
+- **`papers/`**: paper-specific runtime inputs (namelists + forcing files) and brief run notes
 
-    module_mp_nssl_2mom_cpbudg2_NewIF_prcsrates.F
-- Modified version of the NSSL double-moment microphysics scheme, incorporating the New Immersion Freezing (NewIF) algorithm for improved representation of drop freezing.
+## Repository layout
+- `src/`
+  - CM1 source files that differ from the vanilla CM1 v19.6 release (copy these into a CM1 source tree and rebuild).
+  - Includes `base.F` (sounding/wind options, including paper-used constants) and `init3d.F` (Carpenter forcing; reads `carp_force`).
+- `papers/`
+  - Paper-specific run packages and documentation.
+  - Each storm folder is designed to contain only what is needed to run that case once CM1 is built (typically `namelist.input` + `carp_force`).
 
-        init3d.F
-- Modified to include code for initializing convection using a Gaussian plume, following the method of Carpenter et al. (1998).
+## How to use (minimal)
+1. Start from a clean CM1 v19.6 source tree.
+2. Copy the contents of `src/` into the CM1 source directory (overwriting the corresponding files).
+3. Build CM1 (note: any provided Makefile may be cluster-specific).
+4. Choose a run package in `papers/<paper_id>/<storm>/` and copy into a run directory:
+   - `namelist.input` → `./namelist.input`
+   - `carp_force` → `./carp_force`
+5. Run CM1.
 
-## Purpose
-
-The modifications allow CM1 to:
-
-- Embed a new temperature-dependent immersion freezing parameterization within the NSSL microphysics scheme.
-
-- Initialize deep convection using a Gaussian plume.
-
-- Output microphysical process rate terms for detailed budget analyses.
-
-All other model source files are identical to the official CM1v19.6 distribution.
+## Notes on reproducibility / releases
+This repo is designed to be cited via **GitHub Releases** (and, if connected, archived by Zenodo).
+For a specific paper, cite the **release/tag (or commit hash)** used for that paper’s simulations.
 
 ## Citation
+If you use these modifications, please cite the relevant paper and the corresponding archived release of this repository.
 
-If you use these modifications or find them helpful, please cite:
+- Ross, T., & Lasher-Trapp, S. (2025): *Investigating the Relative Roles of INPs and CCN in a Simulated Thunderstorm Using a New Immersion Freezing Algorithm*. Journal of Geophysical Research: Atmospheres. (Add DOI here if desired.)
+- Ross, T., & Lasher-Trapp, S. (2026): submitted to  Journal of Geophysical Research: Atmospheres.
+## What is modified?
+The modified files live in `src/`. In broad terms these changes:
+- implement a temperature-dependent IF-INP immersion-freezing routine in the NSSL 2-moment microphysics, and/or
+- enable Carpenter-style forcing initialization and associated outputs used in the experiments.
 
-Ross, T. and Lasher-Trapp, S. (in submission): Investigating the Relative Roles of INPs and CCN in a Simulated Thunderstorm Using a New Immersion Freezing Algorithm. [JGR Atmospheres].
+(For NewIF parameters, search within the microphysics file for: `!<IFINP_USER_SETTINGS>`.)
 
 
 
