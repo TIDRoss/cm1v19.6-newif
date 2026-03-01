@@ -345,7 +345,7 @@
 
  &nssl2mom_params
    alphah  = 0,     ! shape parameter of graupel
-   alphahl = 0.,    ! shape parameter of hail
+   alphahl = 1.0,    ! shape parameter of hail
    ccn     = 1.2e9  ! base ccn concentration
    cnor    = 8.e6,  ! for single moment only
    cnoh    = 4.e4,  ! for single moment only
