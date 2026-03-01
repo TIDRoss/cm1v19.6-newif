@@ -1,0 +1,18 @@
+Paper 2026: Common run configuration
+
+Each storm folder (ordinary/ and supercell/) contains the two runtime inputs needed to run:
+  - namelist.input
+  - carp_force
+
+All runs use the paper versions of these CM1 source files:
+  - base.F   (sounding + wind options, including the ordinary-storm wind modifications)
+  - init3d.F (Carpenter forcing implementation; reads carp_force)
+
+To apply this setup to a separate CM1 tree: copy base.F and init3d.F from this repo into your
+CM1 source directory (overwriting), rebuild, then run using the storm-specific namelist.input
+and carp_force.
+
+Base-state choices used in this paper:
+  - isnd = 5 for all runs (Weisman–Klemp sounding)
+  - supercell: iwnd = 2 (WK quarter-circle)
+  - ordinary:  iwnd = 1 (RKW-type; only udep2 and uconst2 modified)
