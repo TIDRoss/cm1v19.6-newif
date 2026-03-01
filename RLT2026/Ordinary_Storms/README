@@ -1,0 +1,18 @@
+Paper 2026: Ordinary storm run package
+
+This folder contains everything needed to run the ordinary storm case (aside from the CM1 build):
+
+  - namelist.input
+  - carp_force
+
+How to run
+1) Create a CM1 run directory.
+2) Copy these two files into the run directory:
+     namelist.input -> ./namelist.input
+     carp_force     -> ./carp_force
+3) Build CM1 from this repository and run CM1 in the run directory.
+
+Notes
+- NewIF parameters (N0, beta, etc.) are edited in the source via:
+    !<IFINP_USER_SETTINGS>
+  then CM1 is rebuilt and rerun.
