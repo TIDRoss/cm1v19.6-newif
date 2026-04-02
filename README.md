@@ -1,44 +1,39 @@
 # cm1v19.6-newif
 
 ## Overview
-This repository provides a small set of CM1 v19.6 source-file modifications used in experiments involving an IF-INP (“NewIF”) immersion-freezing routine and Carpenter-style convective forcing. All other CM1 source files are assumed to be identical to the official CM1 v19.6 distribution.
 
-The intent is:
-- **`src/`**: general implementation (code changes)
-- **`papers/`**: paper-specific runtime inputs (namelists + forcing files) and brief run notes
+This repository contains modifications to CM1 v19.6 used in Ross and Lasher-Trapp (2025) and subsequent studies. These modifications include changes to the NSSL 2-moment microphysics scheme associated with the NewIF immersion-freezing routine, as well as Carpenter-style convective forcing used in the experiments. Files not included here are assumed to be unchanged from the official CM1 v19.6 distribution.
 
 ## Repository layout
-- `src/`
-  - CM1 source files that differ from the vanilla CM1 v19.6 release (copy these into a CM1 source tree and rebuild).
-  - Includes `base.F` (sounding/wind options, including paper-used constants) and `init3d.F` (Carpenter forcing; reads `carp_force`).
-- `papers/`
-  - Paper-specific run packages and documentation.
-  - Each storm folder is designed to contain only what is needed to run that case once CM1 is built (typically `namelist.input` + `carp_force`).
 
-## How to use (minimal)
+- `src/`: CM1 source files modified relative to the official CM1 v19.6 release
+- `papers/`: paper-specific run inputs and notes
+
+## How to use
+
 1. Start from a clean CM1 v19.6 source tree.
-2. Copy the contents of `src/` into the CM1 source directory (overwriting the corresponding files).
-3. Build CM1 (note: any provided Makefile may be cluster-specific).
-4. Choose a run package in `papers/<paper_id>/<storm>/` and copy into a run directory:
-   - `namelist.input` → `./namelist.input`
-   - `carp_force` → `./carp_force`
+2. Copy the files in `src/` into the CM1 source directory, overwriting the corresponding originals.
+3. Build CM1.
+4. Copy the desired files from `papers/<paper_id>/<storm>/` into your run directory.
 5. Run CM1.
 
-## Notes on reproducibility / releases
-This repo is designed to be cited via **GitHub Releases** (and, if connected, archived by Zenodo).
-For a specific paper, cite the **release/tag (or commit hash)** used for that paper’s simulations.
+## Citation and versioning
 
-## Citation
-If you use these modifications, please cite the relevant paper and the corresponding archived release of this repository.
+If you use these modifications, please cite the relevant paper describing the model development as well as the archived release of this repository corresponding to the version used in your study.
 
-- Ross, T., & Lasher-Trapp, S. (2025): *Investigating the Relative Roles of INPs and CCN in a Simulated Thunderstorm Using a New Immersion Freezing Algorithm*. Journal of Geophysical Research: Atmospheres. (Add DOI here if desired.)
-- Ross, T., & Lasher-Trapp, S. (2026): submitted to  Journal of Geophysical Research: Atmospheres.
+- Ross, T., & Lasher-Trapp, S. (2025). *Investigating the Relative Roles of INPs and CCN in a Simulated Thunderstorm Using a New Immersion Freezing Algorithm*. *Journal of Geophysical Research: Atmospheres*.
+- Ross, T., & Lasher-Trapp, S. (2026). *[current manuscript title]*. *Journal of Geophysical Research: Atmospheres*, submitted.
+
+For reproducibility, please cite the specific release, tag, or archived version used for a given study.
+
 ## What is modified?
-The modified files live in `src/`. In broad terms these changes:
-- implement a temperature-dependent IF-INP immersion-freezing routine in the NSSL 2-moment microphysics, and/or
-- enable Carpenter-style forcing initialization and associated outputs used in the experiments.
 
-(For NewIF parameters, search within the microphysics file for: `!<IFINP_USER_SETTINGS>`.)
+The modified files are located in `src/`. Broadly, these changes:
+
+- implement a temperature-dependent IF-INP immersion-freezing routine in the NSSL 2-moment microphysics scheme
+- enable Carpenter-style forcing initialization and associated outputs used in the experiments
+
+For NewIF parameters, search within the microphysics file for `!<IFINP_USER_SETTINGS>`.
 
 
 
